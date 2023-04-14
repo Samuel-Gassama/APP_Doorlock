@@ -51,6 +51,8 @@ namespace ProjetTerminal
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+
+
 	}
 }
 
