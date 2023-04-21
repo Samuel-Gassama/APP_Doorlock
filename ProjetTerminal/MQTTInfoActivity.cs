@@ -36,6 +36,7 @@ namespace ProjetTerminal
 
             // Get the text view to display the MQTT message payload
             TextView mqttInfoTextView = FindViewById<TextView>(Resource.Id.mqttInfoTextView);
+            List<string> payloadList = new List<string>();
 
             // Configure the MQTT client
             var options = new MqttClientOptionsBuilder()
@@ -47,7 +48,7 @@ namespace ProjetTerminal
             client.ConnectedHandler = new MqttClientConnectedHandlerDelegate(args =>
             {
                 Console.WriteLine("Connected to MQTT broker");
-                client.SubscribeAsync(new TopicFilterBuilder().WithTopic("mqtt_topic").Build());
+                client.SubscribeAsync(new MqttTopicFilterBuilder().WithTopic("door/lock").Build());
             });
             client.DisconnectedHandler = new MqttClientDisconnectedHandlerDelegate(args =>
             {
@@ -61,10 +62,12 @@ namespace ProjetTerminal
                 string name = jObject["name"].ToString();
                 string door = jObject["door"].ToString();
 
-                // Update the text view with the MQTT message payload
+                // Update the list view with the MQTT message payload
                 RunOnUiThread(() =>
                 {
-                    mqttInfoTextView.Text = $"Card ID: {cardId}\nName: {name}\nDoor: {door}";
+                    payloadList.Add($"Card ID: {cardId}\nName: {name}\nDoor: {door}");
+                    ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, payloadList);
+                    mqttInfoListView.Adapter = adapter;
                 });
             });
 

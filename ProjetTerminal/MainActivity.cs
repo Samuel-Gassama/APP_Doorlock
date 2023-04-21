@@ -57,7 +57,7 @@ namespace ProjetTerminal
                         string responseBody = await response.Content.ReadAsStringAsync();
                         var result = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseBody);
 
-                        var intent = new Intent(this, typeof(DashboardActivity));
+                        var intent = new Intent(this, typeof(MQTTInfoActivity));
                         intent.PutExtra("user_id", result["user_id"]);
                         intent.PutExtra("email", result["email"]);
                         StartActivity(intent);
