@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +19,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using System.Collections.Generic;
 
 namespace ProjetTerminal
 {
@@ -33,10 +33,6 @@ namespace ProjetTerminal
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.listeEntrees);
-
-            // Get the text view to display the MQTT message payload
-            TextView mqttInfoTextView = FindViewById<TextView>(Resource.Id.mqttInfoTextView);
-            List<string> payloadList = new List<string>();
 
             // Configure the MQTT client
             var options = new MqttClientOptionsBuilder()
@@ -65,8 +61,17 @@ namespace ProjetTerminal
                 // Update the list view with the MQTT message payload
                 RunOnUiThread(() =>
                 {
-                    payloadList.Add($"Card ID: {cardId}\nName: {name}\nDoor: {door}");
-                    ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, payloadList);
+                    var adapter = new SimpleAdapter(this, new List<IDictionary<string, object>> {
+                        new JavaDictionary<string, object> {
+                            {"ID", cardId},
+                            {"Statut", name},
+                            {"Porte", door},
+                            {"Date et Heure", DateTime.Now.ToString()}
+                        }
+                    }, Resource.Layout.listeEntrees, new[] { "ID", "Statut", "Porte", "Date et Heure" }, new[] {
+                        Resource.Id.textView1, Resource.Id.textView2, Resource.Id.textView3, Resource.Id.textView4
+                    });
+                    ListView mqttInfoListView = FindViewById<ListView>(Resource.Id.mqttInfoListView);
                     mqttInfoListView.Adapter = adapter;
                 });
             });
