@@ -21,5 +21,6 @@ namespace ProjetTerminal
             TextView textView = FindViewById<TextView>(Resource.Id.user_info);
             textView.Text = $"User ID: {userId}, Email: {email}";
         }
+
     }
 }
