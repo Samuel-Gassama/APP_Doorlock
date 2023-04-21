@@ -62,15 +62,15 @@ namespace ProjetTerminal
                 RunOnUiThread(() =>
                 {
                     var adapter = new SimpleAdapter(this, new List<IDictionary<string, object>> {
-                        new JavaDictionary<string, object> {
-                            {"ID", cardId},
-                            {"Statut", name},
-                            {"Porte", door},
-                            {"Date et Heure", DateTime.Now.ToString()}
-                        }
-                    }, Resource.Layout.listeEntrees, new[] { "ID", "Statut", "Porte", "Date et Heure" }, new[] {
-                        Resource.Id.textView1, Resource.Id.textView2, Resource.Id.textView3, Resource.Id.textView4
-                    });
+                    new JavaDictionary<string, object> {
+                        {"ID", cardId},
+                        {"Statut", name},
+                        {"Porte", door},
+                        {"Date et Heure", DateTime.Now.ToString()}
+                    }
+                }, Resource.Layout.listeEntrees, new[] { "ID", "Statut", "Porte", "Date et Heure" }, new[] {
+                    Resource.Id.textView1, Resource.Id.textView2, Resource.Id.textView3, Resource.Id.textView4
+                });
                     ListView mqttInfoListView = FindViewById<ListView>(Resource.Id.mqttInfoListView);
                     mqttInfoListView.Adapter = adapter;
                 });
@@ -84,4 +84,5 @@ namespace ProjetTerminal
                     .Build());
         }
     }
+
 }
