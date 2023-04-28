@@ -27,6 +27,8 @@ namespace ProjetTerminal
     public class MQTTInfoActivity : Activity
     {
         IManagedMqttClient client;
+        private List<IDictionary<string, object>> scannedKeys = new List<IDictionary<string, object>>();
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -58,23 +60,26 @@ namespace ProjetTerminal
                 string name = jObject["name"].ToString();
                 string door = jObject["door"].ToString();
 
-                // Update the list view with the MQTT message payload
+                // Add the scanned key to the list
+                var scannedKey = new JavaDictionary<string, object> {
+                {"ID", cardId},
+                {"Statut", name},
+                {"Porte", door},
+                {"Date et Heure", DateTime.Now.ToString()}
+            };
+                scannedKeys.Add(scannedKey);
+
+                // Update the list view with all the scanned keys
                 RunOnUiThread(() =>
                 {
-                    var adapter = new SimpleAdapter(this, new List<IDictionary<string, object>> {
-                    new JavaDictionary<string, object> {
-                        {"ID", cardId},
-                        {"Statut", name},
-                        {"Porte", door},
-                        {"Date et Heure", DateTime.Now.ToString()}
-                    }
-                }, Resource.Layout.listeEntrees, new[] { "ID", "Statut", "Porte", "Date et Heure" }, new[] {
-                    Resource.Id.textView1, Resource.Id.textView2, Resource.Id.textView3, Resource.Id.textView4
-                });
+                    var adapter = new SimpleAdapter(this, scannedKeys, Resource.Layout.listeEntrees, new[] { "ID", "Statut", "Porte", "Date et Heure" }, new[] {
+            Resource.Id.textView1, Resource.Id.textView2, Resource.Id.textView3, Resource.Id.textView4
+        });
                     ListView mqttInfoListView = FindViewById<ListView>(Resource.Id.mqttInfoListView);
                     mqttInfoListView.Adapter = adapter;
                 });
             });
+
 
             // Connect to the MQTT broker
             client.StartAsync(
