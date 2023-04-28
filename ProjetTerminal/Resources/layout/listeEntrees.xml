@@ -9,59 +9,66 @@
         android:layout_height="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
-    <ScrollView
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_below="@id/toolbar">
 
-        <TableLayout
+        <!-- Table header -->
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="?attr/colorPrimary">
 
-            <!-- Table header -->
-			<TableRow
-				android:layout_width="306.0dp"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:background="?attr/colorPrimary">
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:textColor="#fff"
+                android:text="ID" />
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_margin="4dp"
-					android:textColor="#fff"
-					android:text="ID" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:textColor="#fff"
+                android:text="Statut" />
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_margin="4dp"
-					android:textColor="#fff"
-					android:text="Statut" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:textColor="#fff"
+                android:text="Porte" />
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_margin="4dp"
-					android:textColor="#fff"
-					android:text="Porte" />
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:textColor="#fff"
+                android:text="Date et Heure" />
+        </TableRow>
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_margin="4dp"
-					android:textColor="#fff"
-					android:text="Date et Heure" />
+        <!-- Table data -->
+        <ListView
+            android:id="@+id/mqttInfoListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:divider="@null"
+            android:dividerHeight="0dp" />
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_margin="4dp"
-					android:textColor="#fff"
-					android:text="Ouvrir" />
-			</TableRow>
-
-        </TableLayout>
-    </ScrollView>
+    </TableLayout>
 
 </RelativeLayout>
