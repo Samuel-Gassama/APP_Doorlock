@@ -1,4 +1,14 @@
-﻿using System;
+﻿/**
+ * Login Page 
+ * @file MQTTInfoActivity.cs
+ * @author 
+ *     - Samuel Gassama
+ * @version 1.5 : 27/04/2023
+ */
+
+
+
+using System;
 using System.Net.Http;
 using Android.Content;
 using System.Text;

@@ -1,4 +1,13 @@
-﻿using System;
+﻿/**
+ * Receiving the MQTT Data info 
+ * @file MQTTInfoActivity.cs
+ * @author 
+ *     - Samuel Gassama
+ * @version 1.5 : 28/04/2023
+ */
+
+
+using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;

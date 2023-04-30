@@ -1,4 +1,13 @@
-﻿using Android.App;
+﻿/**
+ * Login Page 
+ * @file MQTTInfoActivity.cs
+ * @author 
+ *     - Samuel Gassama
+ * @version 1.5 : 27/04/2023
+ */
+
+
+using Android.App;
 using Android.OS;
 using Android.Widget;
 using AndroidX.AppCompat.App;
