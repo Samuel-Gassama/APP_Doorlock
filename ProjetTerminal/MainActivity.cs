@@ -61,7 +61,7 @@ namespace ProjetTerminal
                 using (var httpClient = new HttpClient())
                 {
                     var requestContent = new StringContent(JsonConvert.SerializeObject(new { email, password }), Encoding.UTF8, "application/json");
-                    var response = await httpClient.PostAsync("http://10.0.2.2:8000/api/login", requestContent);
+                    var response = await httpClient.PostAsync("http://10.0.2.2:8000/api/controller/login", requestContent);
                     if (response.IsSuccessStatusCode)
                     {
                         string responseBody = await response.Content.ReadAsStringAsync();
