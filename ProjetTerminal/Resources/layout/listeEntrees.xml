@@ -1,4 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
+
+<!--
+    View for MQTT Data info : Display the latest data received by the broker
+ * @file listeEntrees.xml
+ * @author 
+ *     - Samuel Gassama
+ * @version 1.3, 28/04/2023
+-->
+
+
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -39,7 +52,7 @@
                 android:layout_weight="1"
                 android:layout_margin="4dp"
                 android:textColor="#fff"
-                android:text="Statut" />
+                android:text="Status" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -48,7 +61,7 @@
                 android:layout_weight="1"
                 android:layout_margin="4dp"
                 android:textColor="#fff"
-                android:text="Porte" />
+                android:text="Door" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -57,7 +70,7 @@
                 android:layout_weight="1"
                 android:layout_margin="4dp"
                 android:textColor="#fff"
-                android:text="Date et Heure" />
+                android:text="Date and time" />
         </TableRow>
 
         <!-- Table data -->

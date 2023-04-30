@@ -1,4 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    View for the Login Page
+ * @file login
+ * @author 
+ *     - Samuel Gassama
+ * @version 2.1, 28/04/2023
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -7,7 +16,7 @@
     android:background="@android:color/white">
 
     <TextView
-        android:text="Connexion"
+        android:text="LOGIN"
         android:textSize="24sp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="32dp"
@@ -24,7 +33,7 @@
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nom d'utilisateur"
+            android:hint="Email"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -38,13 +47,13 @@
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mot de passe"
+            android:hint="Password"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/loginButton"
-        android:text="Se connecter"
+        android:text="Sign in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp" />
