@@ -32,7 +32,8 @@ using System.Collections.Generic;
 
 namespace ProjetTerminal
 {
-    [Activity(Label = "MQTTInfoActivity")]
+    [Activity(Label = "MQTTInfoActivity", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
+
     public class MQTTInfoActivity : Activity
     {
         IManagedMqttClient client;
@@ -89,6 +90,23 @@ namespace ProjetTerminal
                 });
             });
 
+            private void SetLanguage(string language)
+            {
+                // Update the locale configuration
+                UpdateLocale(language);
+
+                // Refresh the activity
+                Finish();
+                StartActivity(Intent);
+            }
+
+            // Add a button to go to the SettingsActivity
+            Button settingsButton = FindViewById<Button>(Resource.Id.settingsButton);
+            settingsButton.Click += (sender, args) =>
+            {
+                var intent = new Intent(this, typeof(SettingsActivity));
+                StartActivity(intent);
+            };
 
             // Connect to the MQTT broker
             client.StartAsync(

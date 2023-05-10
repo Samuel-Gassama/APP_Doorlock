@@ -31,5 +31,10 @@ namespace ProjetTerminal
             textView.Text = $"User ID: {userId}, Email: {email}";
         }
 
+
+
     }
+
+
+
 }
