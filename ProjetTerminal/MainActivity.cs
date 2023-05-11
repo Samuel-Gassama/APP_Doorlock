@@ -39,11 +39,11 @@ namespace ProjetTerminal
 
             currentLanguage = Java.Util.Locale.Default.Language;
 
-            //Button loginButton = FindViewById<Button>(Resource.Id.loginButton);
+            Button loginButton = FindViewById<Button>(Resource.Id.loginButton);
             EditText emailEditText = FindViewById<EditText>(Resource.Id.emailEditText);
             EditText passwordEditText = FindViewById<EditText>(Resource.Id.passwordEditText);
 
-            Button loginButton = FindViewById<Button>(Resource.Id.loginButton);
+            //Button loginButton = FindViewById<Button>(Resource.Id.loginButton);
             loginButton.Click += (sender, e) =>
             {
                 var intent = new Intent(this, typeof(MQTTInfoActivity));
@@ -51,12 +51,12 @@ namespace ProjetTerminal
             };
 
             // Add a button to go to the SettingsActivity
-            Button switchLanguage = FindViewById<Button>(Resource.Id.languageButton);
-            switchLanguage.Click += (sender, args) =>
-            {
-                var intent = new Intent(this, typeof(SettingsActivity));
-                StartActivity(intent);
-            };
+            //Button switchLanguage = FindViewById<Button>(Resource.Id.languageButton);
+            //switchLanguage.Click += (sender, args) =>
+            //{
+            //    var intent = new Intent(this, typeof(SettingsActivity));
+            //    StartActivity(intent);
+            //};
 
 
         }
