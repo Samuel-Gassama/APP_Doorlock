@@ -21,6 +21,9 @@
  <string name="change_language_button_label">Change Language</string>
  <string name="mainText">Access Exclusive Features by Logging In</string>
  <string name="switchLanguage">FR</string>
+ <string name="titleList">List of entries</string>
+ <string name="backto">Back to the list of entries</string>
+
 
 </resources>
 

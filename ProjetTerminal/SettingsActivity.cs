@@ -24,7 +24,17 @@ namespace ProjetTerminal
             {
                 ToggleAppLanguage();
             };
+
+            Button backButton = FindViewById<Button>(Resource.Id.backButton);
+            backButton.Click += (sender, args) =>
+            {
+                Finish(); // Finish the current activity to go back to the previous activity
+            };
         }
+
+
+
+        // Méthode pour basculer la langue de l'application
 
         private void ToggleAppLanguage()
         {
@@ -32,6 +42,8 @@ namespace ProjetTerminal
             SetAppLanguage(newLanguage);
             currentLanguage = newLanguage;
         }
+
+        // Méthode pour définir la langue de l'application
 
         private void SetAppLanguage(string languageCode)
         {
@@ -43,9 +55,12 @@ namespace ProjetTerminal
             Recreate();
         }
 
+
         protected override void OnResume()
         {
             base.OnResume();
+
+            // Vérifier si la langue par défaut a été modifiée
 
             if (!Java.Util.Locale.Default.Language.Equals(currentLanguage))
             {

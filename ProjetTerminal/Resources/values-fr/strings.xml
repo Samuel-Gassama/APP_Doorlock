@@ -14,6 +14,9 @@
   <string name="language">Changer de langue</string>
   <string name="settings">Paramètres</string>
  <string name="mainText">Accédez à des fonctionnalités exclusives en vous connectant</string>
-<string name="switchLanguage">EN</string>
+ <string name="switchLanguage">EN</string>
+ <string name="titleList">Liste des entrées</string>
+ <string name="backto">Retour à la liste des entrées</string>
+
 
 </resources>

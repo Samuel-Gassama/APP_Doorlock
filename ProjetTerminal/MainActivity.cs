@@ -50,13 +50,13 @@ namespace ProjetTerminal
                 StartActivity(intent);
             };
 
-            // Add a button to go to the SettingsActivity
-            Button switchLanguage = FindViewById<Button>(Resource.Id.switchLanguage);
-            switchLanguage.Click += (sender, args) =>
-            {
-                var intent = new Intent(this, typeof(SettingsActivity));
-                StartActivity(intent);
-            };
+            //// Add a button to go to the SettingsActivity
+            //Button switchLanguage = FindViewById<Button>(Resource.Id.languageButton);
+            //switchLanguage.Click += (sender, args) =>
+            //{
+            //    var intent = new Intent(this, typeof(SettingsActivity));
+            //    StartActivity(intent);
+            //};
 
 
         }

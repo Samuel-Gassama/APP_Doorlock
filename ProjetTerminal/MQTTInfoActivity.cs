@@ -47,7 +47,7 @@ namespace ProjetTerminal
 
             currentLanguage = Java.Util.Locale.Default.Language;
 
-            // Configure the MQTT client
+            // Configuration du client MQTT
             var options = new MqttClientOptionsBuilder()
                 .WithTcpServer("172.16.5.100", 1883)
                 .WithCredentials("mams", "mams")
@@ -65,13 +65,15 @@ namespace ProjetTerminal
             });
             client.ApplicationMessageReceivedHandler = new MqttApplicationMessageReceivedHandlerDelegate(args =>
             {
+                // Réception d'un message MQTT
+
                 string payload = Encoding.UTF8.GetString(args.ApplicationMessage.Payload);
                 JObject jObject = JObject.Parse(payload);
                 string cardId = jObject["cardId"].ToString();
                 string name = jObject["name"].ToString();
                 string door = jObject["door"].ToString();
 
-                // Add the scanned key to the list
+                // Ajouter la clé scannée à la liste
                 var scannedKey = new JavaDictionary<string, object> {
                 {"ID", cardId},
                 {"Statut", name},
@@ -80,7 +82,7 @@ namespace ProjetTerminal
             };
                 scannedKeys.Add(scannedKey);
 
-                // Update the list view with all the scanned keys
+                // Mettre à jour la liste des clés scannées dans la vue
                 RunOnUiThread(() =>
                 {
                     var adapter = new SimpleAdapter(this, scannedKeys, Resource.Layout.mqtt_list_item, new[] { "ID", "Statut", "Porte", "Date et Heure" }, new[] {
@@ -94,7 +96,6 @@ namespace ProjetTerminal
 
 
 
-            // Add a button to go to the SettingsActivity
             Button settingsButton = FindViewById<Button>(Resource.Id.settingsButton);
             settingsButton.Click += (sender, args) =>
             {
@@ -102,7 +103,7 @@ namespace ProjetTerminal
                 StartActivity(intent);
             };
 
-            // Connect to the MQTT broker
+            // Se connecter au  MQTT
             client.StartAsync(
                 new ManagedMqttClientOptionsBuilder()
                     .WithAutoReconnectDelay(TimeSpan.FromSeconds(5))
