@@ -30,21 +30,35 @@ namespace ProjetTerminal
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        private string currentLanguage;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.login);
 
-            Button loginButton = FindViewById<Button>(Resource.Id.loginButton);
+            currentLanguage = Java.Util.Locale.Default.Language;
+
+            //Button loginButton = FindViewById<Button>(Resource.Id.loginButton);
             EditText emailEditText = FindViewById<EditText>(Resource.Id.emailEditText);
             EditText passwordEditText = FindViewById<EditText>(Resource.Id.passwordEditText);
 
-            loginButton.Click += async (sender, e) =>
+            Button loginButton = FindViewById<Button>(Resource.Id.loginButton);
+            loginButton.Click += (sender, e) =>
             {
-                string email = emailEditText.Text;
-                string password = passwordEditText.Text;
-                await LoginUser(email, password);
+                var intent = new Intent(this, typeof(MQTTInfoActivity));
+                StartActivity(intent);
             };
+
+            // Add a button to go to the SettingsActivity
+            Button switchLanguage = FindViewById<Button>(Resource.Id.switchLanguage);
+            switchLanguage.Click += (sender, args) =>
+            {
+                var intent = new Intent(this, typeof(SettingsActivity));
+                StartActivity(intent);
+            };
+
+
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -53,6 +67,18 @@ namespace ProjetTerminal
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            if (!Java.Util.Locale.Default.Language.Equals(currentLanguage))
+            {
+                Recreate();
+            }
+        }
+
+
 
         private async Task LoginUser(string email, string password)
         {

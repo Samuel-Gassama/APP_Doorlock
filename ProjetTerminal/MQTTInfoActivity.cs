@@ -32,18 +32,20 @@ using System.Collections.Generic;
 
 namespace ProjetTerminal
 {
-    [Activity(Label = "MQTTInfoActivity")]
+    [Activity(Label = "MQTTInfoActivity", Theme = "@style/AppTheme.NoActionBar", MainLauncher = false)]
+
     public class MQTTInfoActivity : Activity
     {
         IManagedMqttClient client;
         private List<IDictionary<string, object>> scannedKeys = new List<IDictionary<string, object>>();
-
+        private string currentLanguage;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             SetContentView(Resource.Layout.listeEntrees);
+
+            currentLanguage = Java.Util.Locale.Default.Language;
 
             // Configure the MQTT client
             var options = new MqttClientOptionsBuilder()
@@ -81,14 +83,24 @@ namespace ProjetTerminal
                 // Update the list view with all the scanned keys
                 RunOnUiThread(() =>
                 {
-                    var adapter = new SimpleAdapter(this, scannedKeys, Resource.Layout.listeEntrees, new[] { "ID", "Statut", "Porte", "Date et Heure" }, new[] {
-            Resource.Id.textView1, Resource.Id.textView2, Resource.Id.textView3, Resource.Id.textView4
-        });
+                    var adapter = new SimpleAdapter(this, scannedKeys, Resource.Layout.mqtt_list_item, new[] { "ID", "Statut", "Porte", "Date et Heure" }, new[] {
+        Resource.Id.textView1, Resource.Id.textView2, Resource.Id.textView3, Resource.Id.textView4
+    });
                     ListView mqttInfoListView = FindViewById<ListView>(Resource.Id.mqttInfoListView);
                     mqttInfoListView.Adapter = adapter;
                 });
+
             });
 
+
+
+            // Add a button to go to the SettingsActivity
+            Button settingsButton = FindViewById<Button>(Resource.Id.settingsButton);
+            settingsButton.Click += (sender, args) =>
+            {
+                var intent = new Intent(this, typeof(SettingsActivity));
+                StartActivity(intent);
+            };
 
             // Connect to the MQTT broker
             client.StartAsync(
@@ -96,7 +108,22 @@ namespace ProjetTerminal
                     .WithAutoReconnectDelay(TimeSpan.FromSeconds(5))
                     .WithClientOptions(options)
                     .Build());
-        }
-    }
 
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            if (!Java.Util.Locale.Default.Language.Equals(currentLanguage))
+            {
+                Recreate();
+            }
+
+
+        }
+
+
+
+    }
 }

@@ -1,0 +1,19 @@
+﻿<resources>
+  <string name="app_name">Verrou de porte</string>
+  <string name="action_settings">Paramètres</string>
+
+  <string name="status">Statut</string>
+  <string name="door">Portes</string>
+  <string name="datetime">Date et heure</string>
+  <string name="clearList">Effacer la liste</string>
+
+  <string name="title">CONNEXION</string>
+  <string name="emailEditText">Adresse e-mail</string>
+  <string name="passwordEditText">Mot de passe</string>
+  <string name="loginButton">Se connecter</string>
+  <string name="language">Changer de langue</string>
+  <string name="settings">Paramètres</string>
+ <string name="mainText">Accédez à des fonctionnalités exclusives en vous connectant</string>
+<string name="switchLanguage">EN</string>
+
+</resources>
