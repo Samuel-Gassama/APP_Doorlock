@@ -16,8 +16,8 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/title"
-            android:text="@string/title"
+            android:id="@+id/titleList"
+            android:text="@string/titleList"
             android:textSize="24sp"
             android:textAlignment="center"
             android:layout_gravity="center_horizontal"

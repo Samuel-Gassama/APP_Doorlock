@@ -51,7 +51,7 @@ namespace ProjetTerminal
             };
 
             // Add a button to go to the SettingsActivity
-            Button switchLanguage = FindViewById<Button>(Resource.Id.switchLanguage);
+            Button switchLanguage = FindViewById<Button>(Resource.Id.languageButton);
             switchLanguage.Click += (sender, args) =>
             {
                 var intent = new Intent(this, typeof(SettingsActivity));
