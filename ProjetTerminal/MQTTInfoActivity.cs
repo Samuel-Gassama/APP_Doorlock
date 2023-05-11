@@ -38,13 +38,14 @@ namespace ProjetTerminal
     {
         IManagedMqttClient client;
         private List<IDictionary<string, object>> scannedKeys = new List<IDictionary<string, object>>();
-
+        private string currentLanguage;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             SetContentView(Resource.Layout.listeEntrees);
+
+            currentLanguage = Java.Util.Locale.Default.Language;
 
             // Configure the MQTT client
             var options = new MqttClientOptionsBuilder()
@@ -90,15 +91,7 @@ namespace ProjetTerminal
                 });
             });
 
-            private void SetLanguage(string language)
-            {
-                // Update the locale configuration
-                UpdateLocale(language);
 
-                // Refresh the activity
-                Finish();
-                StartActivity(Intent);
-            }
 
             // Add a button to go to the SettingsActivity
             Button settingsButton = FindViewById<Button>(Resource.Id.settingsButton);
@@ -114,7 +107,22 @@ namespace ProjetTerminal
                     .WithAutoReconnectDelay(TimeSpan.FromSeconds(5))
                     .WithClientOptions(options)
                     .Build());
-        }
-    }
 
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            if (!Java.Util.Locale.Default.Language.Equals(currentLanguage))
+            {
+                Recreate();
+            }
+
+
+        }
+
+
+
+    }
 }

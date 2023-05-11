@@ -10,47 +10,47 @@ namespace ProjetTerminal
     public class SettingsActivity : Activity
     {
         private Button languageButton;
-        private const string LanguagePreferenceKey = "Language";
+        private string currentLanguage;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             SetContentView(Resource.Layout.settings);
 
+            currentLanguage = Java.Util.Locale.Default.Language;
+
             languageButton = FindViewById<Button>(Resource.Id.languageButton);
-            languageButton.Click += LanguageButton_Click;
+            languageButton.Click += (sender, args) =>
+            {
+                ToggleAppLanguage();
+            };
         }
 
-        private void LanguageButton_Click(object sender, EventArgs e)
+        private void ToggleAppLanguage()
         {
-            string currentLanguage = GetLanguage();
             string newLanguage = currentLanguage == "en" ? "fr" : "en";
-            SetLanguage(newLanguage);
+            SetAppLanguage(newLanguage);
+            currentLanguage = newLanguage;
         }
 
-        private void SetLanguage(string language)
+        private void SetAppLanguage(string languageCode)
         {
-            // Update the locale configuration
-            UpdateLocale(language);
+            var locale = new Java.Util.Locale(languageCode);
+            Java.Util.Locale.Default = locale;
 
-            // Refresh the activity
-            Finish();
-            StartActivity(Intent);
-        }
-
-        private void UpdateLocale(string language)
-        {
-            // Set the new language configuration
-            var config = new Android.Content.Res.Configuration(BaseContext.Resources.Configuration);
-            config.Locale = new Java.Util.Locale(language);
+            var config = new Android.Content.Res.Configuration { Locale = locale };
             BaseContext.Resources.UpdateConfiguration(config, BaseContext.Resources.DisplayMetrics);
+            Recreate();
         }
 
-
-        private string GetLanguage()
+        protected override void OnResume()
         {
-            return Intent.GetStringExtra("Language") ?? "en";
+            base.OnResume();
+
+            if (!Java.Util.Locale.Default.Language.Equals(currentLanguage))
+            {
+                Recreate();
+            }
         }
     }
 }
