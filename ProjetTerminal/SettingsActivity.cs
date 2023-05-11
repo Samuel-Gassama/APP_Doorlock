@@ -32,6 +32,8 @@ namespace ProjetTerminal
             };
         }
 
+
+
         // Méthode pour basculer la langue de l'application
 
         private void ToggleAppLanguage()
@@ -52,6 +54,7 @@ namespace ProjetTerminal
             BaseContext.Resources.UpdateConfiguration(config, BaseContext.Resources.DisplayMetrics);
             Recreate();
         }
+
 
         protected override void OnResume()
         {
