@@ -83,12 +83,13 @@ namespace ProjetTerminal
                 // Update the list view with all the scanned keys
                 RunOnUiThread(() =>
                 {
-                    var adapter = new SimpleAdapter(this, scannedKeys, Resource.Layout.listeEntrees, new[] { "ID", "Statut", "Porte", "Date et Heure" }, new[] {
-            Resource.Id.textView1, Resource.Id.textView2, Resource.Id.textView3, Resource.Id.textView4
-        });
+                    var adapter = new SimpleAdapter(this, scannedKeys, Resource.Layout.mqtt_list_item, new[] { "ID", "Statut", "Porte", "Date et Heure" }, new[] {
+        Resource.Id.textView1, Resource.Id.textView2, Resource.Id.textView3, Resource.Id.textView4
+    });
                     ListView mqttInfoListView = FindViewById<ListView>(Resource.Id.mqttInfoListView);
                     mqttInfoListView.Adapter = adapter;
                 });
+
             });
 
 
