@@ -32,7 +32,7 @@ using System.Collections.Generic;
 
 namespace ProjetTerminal
 {
-    [Activity(Label = "MQTTInfoActivity", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
+    [Activity(Label = "MQTTInfoActivity", Theme = "@style/AppTheme.NoActionBar", MainLauncher = false)]
 
     public class MQTTInfoActivity : Activity
     {

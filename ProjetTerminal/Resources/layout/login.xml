@@ -15,6 +15,14 @@
     android:padding="24dp"
     android:background="@android:color/white">
 
+    <Button
+        android:id="@+id/switchLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/switchLanguage" />
+
     <TextView
         android:id="@+id/title"
         android:text="@string/title"
@@ -58,5 +66,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp" />
+
+    <TextView
+        android:id="@+id/loginText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mainText"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp" />
+    
 
 </LinearLayout>
