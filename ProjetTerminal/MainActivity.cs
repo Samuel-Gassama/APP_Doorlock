@@ -31,6 +31,7 @@ namespace ProjetTerminal
     public class MainActivity : AppCompatActivity
     {
         private string currentLanguage;
+        private Button languageButton;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -47,18 +48,37 @@ namespace ProjetTerminal
             loginButton.Click += (sender, e) =>
             {
                 var intent = new Intent(this, typeof(MQTTInfoActivity));
+                intent.PutExtra("CurrentLanguage", currentLanguage);
                 StartActivity(intent);
             };
 
-            //// Add a button to go to the SettingsActivity
-            //Button switchLanguage = FindViewById<Button>(Resource.Id.languageButton);
-            //switchLanguage.Click += (sender, args) =>
-            //{
-            //    var intent = new Intent(this, typeof(SettingsActivity));
-            //    StartActivity(intent);
-            //};
+            // Add a button to go to the SettingsActivity
+            languageButton = FindViewById<Button>(Resource.Id.languageButton);
+            languageButton.Click += (sender, args) =>
+            {
+                ToggleAppLanguage();
+            };
 
 
+        }
+
+        private void ToggleAppLanguage()
+        {
+            string newLanguage = currentLanguage == "en" ? "fr" : "en";
+            SetAppLanguage(newLanguage);
+            currentLanguage = newLanguage;
+        }
+
+        // Méthode pour définir la langue de l'application
+
+        private void SetAppLanguage(string languageCode)
+        {
+            var locale = new Java.Util.Locale(languageCode);
+            Java.Util.Locale.Default = locale;
+
+            var config = new Android.Content.Res.Configuration { Locale = locale };
+            BaseContext.Resources.UpdateConfiguration(config, BaseContext.Resources.DisplayMetrics);
+            Recreate();
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

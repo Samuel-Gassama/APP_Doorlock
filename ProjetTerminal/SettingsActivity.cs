@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
+using ProjetTerminal;
 
 namespace ProjetTerminal
 {
@@ -28,7 +29,12 @@ namespace ProjetTerminal
             Button backButton = FindViewById<Button>(Resource.Id.backButton);
             backButton.Click += (sender, args) =>
             {
+
+                var intent = new Intent(this, typeof(MQTTInfoActivity));
+                intent.PutExtra("CurrentLanguage", currentLanguage);
                 Finish(); // Finish the current activity to go back to the previous activity
+                StartActivity(intent);
+
             };
         }
 

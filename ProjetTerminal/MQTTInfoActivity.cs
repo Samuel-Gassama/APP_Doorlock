@@ -21,7 +21,7 @@ using MQTTnet.Exceptions;
 using MQTTnet.Extensions.ManagedClient;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
+using ProjetTerminal;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -100,6 +100,7 @@ namespace ProjetTerminal
             settingsButton.Click += (sender, args) =>
             {
                 var intent = new Intent(this, typeof(SettingsActivity));
+                intent.PutExtra("CurrentLanguage", currentLanguage);
                 StartActivity(intent);
             };
 
