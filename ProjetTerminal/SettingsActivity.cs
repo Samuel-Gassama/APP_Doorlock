@@ -1,6 +1,6 @@
 
 /**
- * Receiving the MQTT Data info 
+ * Settings page 
  * @file SettingsActivity.cs
  * @author 
  *     - Samuel Gassama
