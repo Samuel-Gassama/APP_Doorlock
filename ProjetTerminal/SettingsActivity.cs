@@ -1,4 +1,13 @@
-﻿using System;
+
+/**
+ * Receiving the MQTT Data info 
+ * @file SettingsActivity.cs
+ * @author 
+ *     - Samuel Gassama
+ * @version 1.6 : 12/05/2023
+ */
+
+using System;
 using Android.App;
 using Android.Content;
 using Android.OS;
