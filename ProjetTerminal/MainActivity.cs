@@ -1,3 +1,11 @@
+/**
+ * Page de connexion
+ * @file MQTTInfoActivity.cs
+ * @author 
+ *     - Samuel Gassama
+ * @version 1.5 : 12/05/2023
+ */
+
 using System;
 using System.Net.Http;
 using Android.Content;
