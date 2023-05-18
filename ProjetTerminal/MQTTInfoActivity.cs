@@ -3,7 +3,7 @@
  * @file MQTTInfoActivity.cs
  * @author 
  *     - Samuel Gassama
- * @version 1.5 : 28/04/2023
+ * @version 1.6 : 12/05/2023
  */
 
 
